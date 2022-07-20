@@ -1,18 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
-
+import { useAtom } from 'jotai'
+import RenderHtml from 'react-native-render-html';
+import {ScrollView, useWindowDimensions} from 'react-native';
+import { newsAtom  } from '../jotai/newsAtom'
 export default function NewsDetail() {
+  const {width} = useWindowDimensions();
+  const [stNewsAtom] = useAtom(newsAtom)
   return (
-    <SafeAreaView>
-      <Text>NewsDetail</Text>
-    </SafeAreaView>
+    <ScrollView style={{padding: 10}}>
+      <RenderHtml contentWidth={width} source={stNewsAtom} />
+    </ScrollView>
   );
 }
