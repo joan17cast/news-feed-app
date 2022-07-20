@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text, FlatList} from 'react-native';
+import {SafeAreaView, FlatList} from 'react-native';
 
 import {parse} from 'rss-to-json';
 
