@@ -13,6 +13,7 @@
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "eslint-plugin-react-native": "^4.0.0",
+    "jotai": "^1.7.6",
     "react": "18.0.0",
     "react-native": "0.69.1",
     "react-native-render-html": "^6.3.4",
