@@ -6,11 +6,11 @@ import {parse} from 'rss-to-json';
 // * Components
 import FeedItem from '../components/FeedItem';
 
-const initState ={
-  loading: false
-}
+const initState = {
+  loading: false,
+};
 
-export default function HomeFeed({ navigation }) {
+export default function HomeFeed({navigation}) {
   const [state, setState] = useState(initState);
   useEffect(() => {
     getNewsFeed();
@@ -19,7 +19,13 @@ export default function HomeFeed({ navigation }) {
   async function getNewsFeed() {
     setState({...state, loading: true});
     const rss = await parse('http://www.xatakandroid.com/tag/feeds/rss2.xml');
-    setState({...state, items: rss.items, loading: false});
+    let items = rss.items.slice(0);
+    items.sort(function (a, b) {
+      console.log();
+      return a.created - b.created;
+    });
+    console.log(items);
+    setState({...state, items: items, loading: false});
     console.log(rss);
   }
   return (
@@ -28,7 +34,14 @@ export default function HomeFeed({ navigation }) {
         refreshing={state.loading}
         onRefresh={getNewsFeed}
         data={state?.items}
-        renderItem={({item}) => <FeedItem onPress={() => {navigation.navigate("News")}} itemInfo={item}/>}
+        renderItem={({item}) => (
+          <FeedItem
+            onPress={() => {
+              navigation.navigate('News');
+            }}
+            itemInfo={item}
+          />
+        )}
       />
     </SafeAreaView>
   );
