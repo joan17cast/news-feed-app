@@ -17,7 +17,7 @@ export default function FeedItem(props) {
     <Pressable
       onPress={() => {
         props.onPress(),
-          setNewsAtom({...stNewsAtom, html: props.itemInfo.description});
+          setNewsAtom({...stNewsAtom , html: props.itemInfo.description, title: props.itemInfo.title});
       }}
       style={{borderBottomWidth: 1}}>
       <Text style={{padding: 5}}>{props.itemInfo?.title}</Text>
